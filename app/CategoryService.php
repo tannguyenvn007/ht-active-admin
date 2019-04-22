@@ -13,4 +13,9 @@ class CategoryService extends Model
     {
         return $this->hasMany('App\Service', 'cate_serviceId','id');
     }
+    public function portfolios()
+    {
+        return $this->hasMany('App\Portfolio', 'cateId','id');
+    }
 }
+

@@ -63,6 +63,7 @@
             <h6 class="collapse-header">Pages:</h6>
             <a class="collapse-item" href="{{ route('service-category') }}">Service Category</a>
             <a class="collapse-item" href="{{ route('service') }}">Service</a>
+            <a class="collapse-item" href="{{ route('portfolios') }}">Portfolios</a>
         </div>
       </div>
     </li>

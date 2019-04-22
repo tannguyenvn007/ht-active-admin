@@ -30,6 +30,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/edit/{id}', 'ServiceController@update')->name('post-edit-service');
         Route::get('/delete/{id}', 'ServiceController@destroy')->name('delete-service');
     });
-
+    Route::group(['prefix' => 'portfolios'], function () {
+        Route::get('/', 'PortfoliosController@index')->name('portfolios');
+        Route::get('/add', 'PortfoliosController@create')->name('add-portfolios');
+        Route::post('/add', 'PortfoliosController@store')->name('post-add-portfolios');
+        Route::get('/edit/{id}', 'PortfoliosController@edit')->name('get-edit-portfolios');
+        Route::post('/edit/{id}', 'PortfoliosController@update')->name('post-edit-portfolios');
+        Route::get('/delete/{id}', 'PortfoliosController@destroy')->name('delete-portfolios');
+    });
 });
 
