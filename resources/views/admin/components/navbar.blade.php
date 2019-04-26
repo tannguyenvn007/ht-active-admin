@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
       </div>
@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item ">
         <a class="nav-link" href="{{route('dashboard')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -61,25 +61,26 @@
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pages:</h6>
-            <a class="collapse-item" href="{{ route('service-category') }}">Service Category</a>
+            <a id="page1" class="collapse-item" href="{{ route('service-category') }}">Categories</a>
             <a class="collapse-item" href="{{ route('service') }}">Service</a>
             <a class="collapse-item" href="{{ route('portfolios') }}">Portfolios</a>
+            <a class="collapse-item" href="{{ route('blog') }}">Blog</a>
         </div>
       </div>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="{{ route('contact') }}">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
+        <span>Contact</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-      <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
+      <a class="nav-link" href="{{ route('user') }}">
+        <i class="fas fa-user"></i>
+        <span>Users</span></a>
     </li>
 
     <!-- Divider -->
@@ -91,3 +92,4 @@
     </div>
 
   </ul>
+

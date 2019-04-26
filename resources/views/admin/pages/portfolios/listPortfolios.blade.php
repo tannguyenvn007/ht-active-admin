@@ -24,39 +24,48 @@
                         </button>
                     </div>
                 @endif
-                <table class="table table-bordered">
-                    <thead class="bg-primary text-white">
-                        <tr>
-                            <th scope="col">Stt</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Technology</th>
-                            <th scope="col">Details</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($portfolios as $key => $itemPortfolios)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-cus">
+                        <thead class="bg-primary text-white text-center">
                             <tr>
-                                <th scope="row">{{++$key}}</th>
-                                <td><img src="{{asset('images').'/'.$itemPortfolios->image}}" alt="" width="50px" height="50px"></td>
-                                <td>{{$itemPortfolios->title}}</td>
-                                <td>{{$itemPortfolios->description}}</td>
-                                <td>{{$itemPortfolios->technology}}</td>
-                                <td>{!!$itemPortfolios->details!!}</td>
-                                <td>{{$itemPortfolios->categories->name}}</td>
-                                <td>
-                                    <a href="{{ route('get-edit-portfolios',['id' => $itemPortfolios->id]) }}"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('delete-portfolios',['id' => $itemPortfolios->id]) }}"  onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
-                                </td>
+                                <th scope="col">Stt</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col" style="width:30%">Description</th>
+                                <th scope="col" style="width:15%">Technology</th>
+                                <th scope="col">Details</th>
+                                <th scope="col">Category</th>
+                                <th scope="col" style="width:8%">Action</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($portfolios as $key => $itemPortfolios)
+                                <tr>
+                                    <th scope="row" class="text-center">{{++$key}}</th>
+                                    <td class="text-center"><img src="{{asset('images').'/'.$itemPortfolios->image}}" alt="" width="100px" height="100px"></td>
+                                    <td class="text-center">{{$itemPortfolios->title}}</td>
+                                    <td>{{$itemPortfolios->description}}</td>
+                                    <td>{{$itemPortfolios->technology}}</td>
+                                    <td>{!!$itemPortfolios->details!!}</td>
+                                    <td class="text-center">{{$itemPortfolios->categories->name}}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('get-portfolios-detaitls',['id' => $itemPortfolios->id]) }}"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('get-edit-portfolios',['id' => $itemPortfolios->id]) }}"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('delete-portfolios',['id' => $itemPortfolios->id]) }}"  onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 paginate">
+        {{ $portfolios->links() }}
     </div>
 </div>
 @endsection

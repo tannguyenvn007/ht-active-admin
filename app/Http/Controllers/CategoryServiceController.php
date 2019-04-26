@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\CategoryService;
 use Illuminate\Http\Request;
+use App\Service;
+use App\Portfolio;
 
 class CategoryServiceController extends Controller
 {
@@ -13,7 +15,7 @@ class CategoryServiceController extends Controller
      */
     public function index()
     {
-        $cateSevice = CategoryService::all();
+        $cateSevice = CategoryService::orderBy('created_at','desc')->paginate(5);
         return view('admin.pages.serviceCategory.listServiceCategory',compact('cateSevice'));
     }
 
@@ -65,7 +67,8 @@ class CategoryServiceController extends Controller
      */
     public function show($id)
     {
-
+        $category  = CategoryService::find($id);
+        return view('admin.pages.serviceCategory.detailsCategory',compact('category'));
     }
 
     /**
@@ -119,9 +122,12 @@ class CategoryServiceController extends Controller
      */
     public function destroy($id)
     {
+        $service = Service::where('cate_serviceId',$id);
+        $service->delete();
+        $portfolios = Portfolio::where('cateId',$id);
+        $portfolios->delete();
         $cateService = CategoryService::find($id);
         $cateService->delete();
-
         return redirect()->route('service-category')->with('message','Deleted Successfully');
     }
 }

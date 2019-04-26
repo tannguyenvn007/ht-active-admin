@@ -19,7 +19,7 @@ class CreatePortfoliosTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('technology');
-            $table->text('details');
+            $table->text('details')->nullable();
             $table->unsignedBigInteger('cateId');
             $table->foreign('cateId')->references('id')->on('category_services');
             $table->timestamps();

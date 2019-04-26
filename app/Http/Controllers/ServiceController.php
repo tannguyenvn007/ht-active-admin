@@ -14,7 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services  = Service::all();
+        $services  = Service::orderBy('created_at','desc')->paginate(5);
         return view('admin.pages.service.listService', compact('services'));
     }
 
@@ -46,7 +46,7 @@ class ServiceController extends Controller
             ],
             [
                 'name.required' => "This Name field can't empty",
-                'name.unique' => "This Name field already exist",
+                'name.unique' => "This Name field has already exist",
                 'description.required' => "This Description field can't empty",
                 'image.required' => "This Image field can't empty",
                 'image.image' => "Please choose image",
@@ -85,7 +85,8 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::find($id);
+        return view('admin.pages.service.detailsService',compact('service'));
     }
 
     /**

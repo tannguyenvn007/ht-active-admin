@@ -14,7 +14,7 @@ class PortfoliosController extends Controller
      */
     public function index()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.pages.portfolios.listPortfolios',compact('portfolios'));
     }
 
@@ -43,7 +43,6 @@ class PortfoliosController extends Controller
                 'description' => 'required',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'technology' => 'required',
-                'details' => 'required',
                 'category' => 'required'
             ],
             [
@@ -53,9 +52,8 @@ class PortfoliosController extends Controller
                 'image.required' => "This Image field can't empty",
                 'image.image' => "Please choose image",
                 'image.mimes' => "Please choose jpeg,png,jpg,gif,svg files",
-                'image.max' => "Please choose image < 2048MB",
+                'image.max' => "Please choose image size < 2048MB",
                 'technology' => "This Technology field can't empty",
-                'details' => "This Details field can't empty",
                 'category.required' => "This Category field can't empty",
             ]
         );
@@ -90,7 +88,8 @@ class PortfoliosController extends Controller
      */
     public function show($id)
     {
-        //
+        $portfolios = Portfolio::find($id);
+        return view('admin.pages.portfolios.detailsPortfolios',compact('portfolios'));
     }
 
     /**
@@ -120,14 +119,12 @@ class PortfoliosController extends Controller
                 'title' => 'required',
                 'description' => 'required',
                 'technology' => 'required',
-                'details' => 'required',
                 'category' => 'required'
             ],
             [
                 'title.required' => "This Name field can't empty",
                 'description.required' => "This Description field can't empty",
                 'technology.required' => "This Technology field can't empty",
-                'details.required' => "This Details field can't empty",
                 'category.required' => "This Category field can't empty",
             ]
         );

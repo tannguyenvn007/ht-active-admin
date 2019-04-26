@@ -24,8 +24,8 @@
                         </button>
                     </div>
                 @endif
-                <table class="table table-bordered text-center">
-                    <thead class="bg-primary text-white">
+                <table class="table table-bordered table-cus text-center">
+                    <thead class="bg-primary text-white ">
                         <tr>
                             <th scope="col">Stt</th>
                             <th scope="col">Image</th>
@@ -38,12 +38,13 @@
                     <tbody>
                         @foreach ($services as $key => $service)
                             <tr>
-                                <th scope="row">{{++$key}}</th>
-                                <td><img src="{{asset('images').'/'.$service->image}}" alt="" width="50px" height="50px"></td>
+                                <th class="text-center" scope="row">{{++$key}}</th>
+                                <td class="text-center"><img src="{{asset('images').'/'.$service->image}}" alt="" width="100px" height="100px"></td>
                                 <td>{{$service->name}}</td>
-                                <td>{!!$service->description!!}</td>
+                                <td class="description-p">{!!$service->description!!}</td>
                                 <td>{{$service->categoryService->name}}</td>
                                 <td>
+                                    <a href="{{ route('get-service-detaitls',['id' => $service->id]) }}"><i class="fas fa-eye"></i></a>
                                     <a href="{{ route('get-edit-service',['id' => $service->id]) }}"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{ route('delete-service',['id' => $service->id]) }}"  onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
                                 </td>
@@ -53,6 +54,11 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 paginate">
+        {{ $services->links() }}
     </div>
 </div>
 @endsection

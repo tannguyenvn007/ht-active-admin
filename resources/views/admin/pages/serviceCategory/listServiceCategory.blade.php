@@ -1,8 +1,8 @@
 @extends('admin.index')
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Service Category</h1>
-    <a href="{{route('add-service-category')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add category service</a>
+    <h1 class="h3 mb-0 text-gray-800">Category</h1>
+    <a href="{{route('add-service-category')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Category</a>
 </div>
 <div class="row">
     <div class="col-lg-12">
@@ -43,6 +43,7 @@
                                 <td  class="text-center">{{$itemCateSevice->name}}</td>
                                 <td>{{$itemCateSevice->description}}</td>
                                 <td  class="text-center">
+                                    <a href="{{ route('get-service-category-detaitls',['id' => $itemCateSevice->id]) }}"><i class="fas fa-eye"></i></a>
                                     <a href="{{ route('get-edit-service-category',['id' => $itemCateSevice->id]) }}"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{ route('delete-service-category',['id' => $itemCateSevice->id]) }}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
                                 </td>
@@ -52,6 +53,11 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 paginate">
+        {{ $cateSevice->links() }}
     </div>
 </div>
 @endsection
